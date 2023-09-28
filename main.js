@@ -19,8 +19,13 @@ const controls = new OrbitControls( camera, renderer.domElement );
 
 // Create a cube
 const material = new THREE.MeshToonMaterial({ color: 0x00ff00 });
+const sunmaterial = new THREE.MeshToonMaterial({ color: 0xffff00 });
 
-const geometry = new THREE.SphereGeometry(1, 32, 32);
+const geometry = new THREE.SphereGeometry(10, 32, 32);
+
+const sun = new THREE.Mesh(geometry, sunmaterial);
+sun.materail.flatShading = false;
+sun.postion.set(0,0,0);
 
 const erths = [];
 for (let i = 0; i<12; i++){
