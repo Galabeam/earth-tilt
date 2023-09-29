@@ -74,15 +74,13 @@ for (let i = 0; i < 12; i++) {
 scene.add(group);
 scene.add(group2);
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.01); // Color and intensity (0.5)
-scene.add(ambientLight);
-const directionalLight = new THREE.DirectionalLight(0xffffff,1);
-directionalLight.position.set(0,2,0);
-//scene.add(directionalLight);
+const sunlight = new THREE.PointLight(0xffff00, 2);
+sunlight.position.set(0, 0, 0);
+scene.add(sunlight);
 
 const light = new THREE.PointLight( 0xffFFFF, 3 );
 light.position.set( 0, 0, 0 );
-scene.add( light );
+// scene.add( light );
 
 // Animation loop
 var time = new Date();
