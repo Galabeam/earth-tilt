@@ -69,16 +69,6 @@ for (let i = 0; i < 12; i++) {
     group2.add(line);
 }
 
-
-
-
-const geometry2 = new THREE.PlaneGeometry( 100, 100 );
-const material2 = new THREE.MeshBasicMaterial( {color: 0x444444, side: THREE.DoubleSide} );
-const plane = new THREE.Mesh( geometry2, material2 );
-plane.rotation.x = (Math.PI/2);
-plane.position.set(0,-10,0);
-scene.add( plane );
-
 //group.add(lines);
 
 scene.add(group);
