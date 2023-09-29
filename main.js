@@ -26,8 +26,8 @@ const sungeometry = new THREE.SphereGeometry(10, 32, 32);
 
 const sun = new THREE.Mesh(sungeometry, sunmaterial);
 sun.material.flatShading = false;
-sun.position.set(0,0,0);
-scene.add(sun);
+sun.position.set(0, 0, 0);
+scene.add( sun );
 
 const erths = [];
 for (let i = 0; i<12; i++){
