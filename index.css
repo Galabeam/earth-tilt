@@ -1,0 +1,22 @@
+@font-face {
+    font-family: Roboto;
+    src: url("fnt/Roboto.ttf");
+}
+
+body { 
+	margin: 0;
+}
+
+#inputguide {
+	position: absolute;
+	left: 1em;
+	bottom: 1em;
+	width: 34ex;
+	height: 14em;
+
+	text-align: center;
+	font-size: 15px;
+	background-color: rgb(64,64,64);
+	font-family: Roboto;
+	color: white;
+}
