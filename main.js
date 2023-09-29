@@ -1,7 +1,12 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.module.js';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
 
+const texture = new THREE.TextureLoader();
 const scene = new THREE.Scene();
+
+// Textures to load
+var earthWrap = texture.load('txtr/earthwrap.jpg');
+var sunWrap = texture.load('txtr/sunwrap.jpg');
 
 // Create a camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
@@ -18,20 +23,23 @@ document.body.appendChild(renderer.domElement);
 const controls = new OrbitControls( camera, renderer.domElement );
 
 // Create a cube
-const material = new THREE.MeshToonMaterial({ color: 0x00ff00 });
-const sunmaterial = new THREE.MeshToonMaterial({ color: 0xffff00 });
-
 const geometry = new THREE.SphereGeometry(1, 32, 32);
-const sungeometry = new THREE.SphereGeometry(2, 32, 32);
+const sunmesh = new THREE.SphereGeometry(2, 32, 32);
 
-const sun = new THREE.Mesh(sungeometry, sunmaterial);
+const sunmat = new THREE.MeshToonMaterial({ map: sunWrap });
+const sun = new THREE.Mesh(sunmesh, sunmat);
 sun.material.flatShading = false;
 sun.position.set(0, 0, 0);
 scene.add(sun);
 
+const sunlight = new THREE.PointLight(0xffff00, 2);
+sunlight.position.set(0, 0, 0);
+scene.add(sunlight);
+
+const erthmat = new THREE.MeshStandardMaterial({ map: earthWrap });
 const erths = [];
 for (let i = 0; i<12; i++){
-    const erth = new THREE.Mesh(geometry, material);
+    const erth = new THREE.Mesh(geometry, erthmat);
     erth.material.flatShading = false;
     erths.push(erth);
 }
@@ -73,14 +81,6 @@ for (let i = 0; i < 12; i++) {
 
 scene.add(group);
 scene.add(group2);
-
-const sunlight = new THREE.PointLight(0xffff00, 2);
-sunlight.position.set(0, 0, 0);
-scene.add(sunlight);
-
-const light = new THREE.PointLight( 0xffFFFF, 3 );
-light.position.set( 0, 0, 0 );
-// scene.add( light );
 
 // Animation loop
 var time = new Date();
@@ -133,30 +133,28 @@ document.addEventListener('keydown', event => {
         shift = true;
     }
     
-    if (key === 'w') {
-        if (shift === true) {
-            // Rotate spheres about their X-axes in the positive direction
-            lines.forEach( lin => {
-                lin.rotation.z += 1;
-            })
-        }
-        else {
+    if (shift == false) {
+        if (key === 'w') {
             // Rotate spheres about their X-axes in the positive direction
             lines.forEach( lin => {
                 lin.rotation.z += 0.01;
             })
-        }
-    } else if (key === 's') {
-        if (shift === true) {
-            // Rotate spheres about their X-axes in the positive direction
-            lines.forEach( lin => {
-                lin.rotation.z -= 1;
-            })
-        }
-        else {
+        } else if (key === 's') {
             // Rotate spheres about their X-axes in the positive direction
             lines.forEach( lin => {
                 lin.rotation.z -= 0.01;
+            })
+        }
+    }
+    else if (shift == true) {
+        if (key === 'w') {
+            lines.forEach( lin => {
+                lin.rotation.z += 1;
+            })
+        }
+        else if (key === 's') {
+            lines.forEach( lin => {
+                lin.rotation.z -= 1;
             })
         }
     }
