@@ -125,19 +125,47 @@ window.addEventListener("resize", () => {
     renderer.setSize(newWidth, newHeight);
 });
 
+var shift = false;
 document.addEventListener('keydown', event => {
     const key = event.key.toLowerCase();
+
+    if (key === 'shift') {
+        shift = true;
+    }
     
     if (key === 'w') {
-        // Rotate spheres about their X-axes in the positive direction
+        if (shift === true) {
+            // Rotate spheres about their X-axes in the positive direction
+            lines.forEach( lin => {
+                lin.rotation.z += 1;
+            })
+        }
+        else {
+            // Rotate spheres about their X-axes in the positive direction
             lines.forEach( lin => {
                 lin.rotation.z += 0.01;
             })
-            
+        }
     } else if (key === 's') {
-        // Rotate spheres about their X-axes in the negative direction
-        lines.forEach( lin => {
-            lin.rotation.z -= 0.01;
-        })
+        if (shift === true) {
+            // Rotate spheres about their X-axes in the positive direction
+            lines.forEach( lin => {
+                lin.rotation.z -= 1;
+            })
+        }
+        else {
+            // Rotate spheres about their X-axes in the positive direction
+            lines.forEach( lin => {
+                lin.rotation.z -= 0.01;
+            })
+        }
+    }
+});
+
+document.addEventListener('keyup', event => {
+    const key = event.key.toLowerCase();
+
+    if (key === 'shift') {
+        shift = false;
     }
 });
