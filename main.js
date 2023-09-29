@@ -19,15 +19,15 @@ const controls = new OrbitControls( camera, renderer.domElement );
 
 // Create a cube
 const material = new THREE.MeshToonMaterial({ color: 0x00ff00 });
-const sunmaterial = new THREE.MeshToonMaterial({ color: 0xffff00 });
+// const sunmaterial = new THREE.MeshToonMaterial({ color: 0xffff00 });
 
 const geometry = new THREE.SphereGeometry(1, 32, 32);
-const sungeometry = new THREE.SphereGeometry(10, 32, 32);
+// const sungeometry = new THREE.SphereGeometry(10, 32, 32);
 
-const sun = new THREE.Mesh(sungeometry, sunmaterial);
-sun.material.flatShading = false;
-sun.position.set(0, 0, 0);
-scene.add( sun );
+// const sun = new THREE.Mesh(sungeometry, sunmaterial);
+// sun.material.flatShading = false;
+// sun.position.set(0, 0, 0);
+// scene.add( sun );
 
 const erths = [];
 for (let i = 0; i<12; i++){
