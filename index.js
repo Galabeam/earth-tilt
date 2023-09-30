@@ -4,30 +4,66 @@ import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/exampl
 const texture = new THREE.TextureLoader();
 const scene = new THREE.Scene();
 
-// Textures to load
-var earthWrap = texture.load('txtr/earthwrap.jpg');
+// Textures
 var sunWrap = texture.load('txtr/sunwrap.jpg');
+var mrcryWrap = texture.load('txtr/mrcrywrap.jpg');
+var vnusWrap = texture.load('txtr/vnuswrap.jpg');
+var erthWrap = texture.load('txtr/erthwrap.jpg');
+var mrsWrap = texture.load('txtr/mrswrap.jpg');
+var jptrWrap = texture.load('txtr/jptrwrap.jpg');
+var strnWrap = texture.load('txtr/strnwrap.jpg');
+var urnsWrap = texture.load('txtr/urnswrap.jpg');
+var nptnWrap = texture.load('txtr/nptnwrap.jpg');
+var plutoWrap = texture.load('txtr/plutowrap.jpg');
 
-// Create a camera
+// Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
-camera.position.z = 20;
-camera.position.y = 8;
+camera.position.z = 0;
+camera.position.y = 90;
 camera.lookAt(new THREE.Vector3(0,0,0));
 const group = new THREE.Group();
 const group2 = new THREE.Group();
-// Create a renderer
+
+// Renderer
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 const controls = new OrbitControls( camera, renderer.domElement );
 
-// Create a cube
-const geometry = new THREE.SphereGeometry(1, 32, 32);
-const sunmesh = new THREE.SphereGeometry(2, 32, 32);
+// Geometry
+const sunMesh = new THREE.SphereGeometry(2, 32, 32);
+const mrcryMesh = new THREE.SphereGeometry(0.4, 32, 32);
+const vnusMesh = new THREE.SphereGeometry(0.8, 32, 32);
+const erthMesh = new THREE.SphereGeometry(1, 32, 32);
+const mrsMesh = new THREE.SphereGeometry(0.7, 32, 32);
+const jptrMesh = new THREE.SphereGeometry(2.2, 32, 32);
+const strnMesh = new THREE.SphereGeometry(2, 32, 32);
+const urnsMesh = new THREE.SphereGeometry(0.9, 32, 32);
+const nptnMesh = new THREE.SphereGeometry(0.85, 32, 32);
+const plutoMesh = new THREE.SphereGeometry(0.3, 32, 32);
 
-const sunmat = new THREE.MeshToonMaterial({ map: sunWrap });
-const sun = new THREE.Mesh(sunmesh, sunmat);
+const lineMesh = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(0, -2, 0), // Start point (vertical line segment)
+    new THREE.Vector3(0, 2, 0)   // End point (vertical line segment)
+]);
+
+// Materials
+const sunMat = new THREE.MeshToonMaterial({ map: sunWrap });
+const mrcryMat = new THREE.MeshStandardMaterial({ map: mrcryWrap });
+const vnusMat = new THREE.MeshStandardMaterial({ map: vnusWrap });
+const erthMat = new THREE.MeshStandardMaterial({ map: erthWrap });
+const mrsMat = new THREE.MeshStandardMaterial({ map: mrsWrap });
+const jptrMat = new THREE.MeshStandardMaterial({ map: jptrWrap });
+const strnMat = new THREE.MeshStandardMaterial({ map: strnWrap });
+const urnsMat = new THREE.MeshStandardMaterial({ map: urnsWrap });
+const nptnMat = new THREE.MeshStandardMaterial({ map: nptnWrap });
+const plutoMat = new THREE.MeshStandardMaterial({ map: plutoWrap });
+
+const lineMat = new THREE.LineBasicMaterial({color: 0xFFFFFF, linewidth: 100});
+
+// Meshes
+const sun = new THREE.Mesh(sunMesh, sunMat);
 sun.material.flatShading = false;
 sun.position.set(0, 0, 0);
 scene.add(sun);
@@ -36,35 +72,125 @@ const sunlight = new THREE.PointLight(0xffffff, 2);
 sunlight.position.set(0, 0, 0);
 scene.add(sunlight);
 
-const erthmat = new THREE.MeshStandardMaterial({ map: earthWrap });
-const erths = [];
+// Distance from sun
+let mrcrydistance = 5;
+let vnusdistance = 10;
+let erthdistance = 15;
+let mrsdistance = 24;
+let jptrdistance = 34;
+let strndistance = 45;
+let urnsdistance = 55;
+let nptndistance = 66;
+let plutodistance = 78;
+
+const mrcrygrp = [];
 for (let i = 0; i<12; i++){
-    const erth = new THREE.Mesh(geometry, erthmat);
-    erth.material.flatShading = false;
-    erths.push(erth);
+    const mrcry = new THREE.Mesh(mrcryMesh, mrcryMat);
+    mrcry.material.flatShading = false;
+    mrcrygrp.push(mrcry);
 }
-let dis = 10;
 for(let i = 0; i<12; i++){
-    erths[i].position.set(dis*Math.sin(i*Math.PI/2/3),0,dis*Math.cos(i*Math.PI/2/3));
-    group.add(erths[i]);
+    mrcrygrp[i].position.set(mrcrydistance*Math.sin(i*Math.PI/2/3),0,mrcrydistance*Math.cos(i*Math.PI/2/3));
+    group.add(mrcrygrp[i]);
+}
+
+const vnusgrp = [];
+for (let i = 0; i<12; i++){
+    const vnus = new THREE.Mesh(vnusMesh, vnusMat);
+    vnus.material.flatShading = false;
+    vnusgrp.push(vnus);
+}
+for(let i = 0; i<12; i++){
+    vnusgrp[i].position.set(vnusdistance*Math.sin(i*Math.PI/2/3),0,vnusdistance*Math.cos(i*Math.PI/2/3));
+    group.add(vnusgrp[i]);
+}
+
+const erthgrp = [];
+for (let i = 0; i<12; i++){
+    const erth = new THREE.Mesh(erthMesh, erthMat);
+    erth.material.flatShading = false;
+    erthgrp.push(erth);
+}
+for(let i = 0; i<12; i++){
+    erthgrp[i].position.set(erthdistance*Math.sin(i*Math.PI/2/3),0,erthdistance*Math.cos(i*Math.PI/2/3));
+    group.add(erthgrp[i]);
+}
+
+const mrsgrp = [];
+for (let i = 0; i<12; i++){
+    const mrs = new THREE.Mesh(mrsMesh, mrsMat);
+    mrs.material.flatShading = false;
+    mrsgrp.push(mrs);
+}
+for(let i = 0; i<12; i++){
+    mrsgrp[i].position.set(mrsdistance*Math.sin(i*Math.PI/2/3),0,mrsdistance*Math.cos(i*Math.PI/2/3));
+    group.add(mrsgrp[i]);
+}
+
+const jptrgrp = [];
+for (let i = 0; i<12; i++){
+    const jptr = new THREE.Mesh(jptrMesh, jptrMat);
+    jptr.material.flatShading = false;
+    jptrgrp.push(jptr);
+}
+for(let i = 0; i<12; i++){
+    jptrgrp[i].position.set(jptrdistance*Math.sin(i*Math.PI/2/3),0,jptrdistance*Math.cos(i*Math.PI/2/3));
+    group.add(jptrgrp[i]);
+}
+
+const strngrp = [];
+for (let i = 0; i<12; i++){
+    const strn = new THREE.Mesh(strnMesh, strnMat);
+    strn.material.flatShading = false;
+    strngrp.push(strn);
+}
+for(let i = 0; i<12; i++){
+    strngrp[i].position.set(strndistance*Math.sin(i*Math.PI/2/3),0,strndistance*Math.cos(i*Math.PI/2/3));
+    group.add(strngrp[i]);
+}
+
+const urnsgrp = [];
+for (let i = 0; i<12; i++){
+    const urns = new THREE.Mesh(urnsMesh, urnsMat);
+    urns.material.flatShading = false;
+    urnsgrp.push(urns);
+}
+for(let i = 0; i<12; i++){
+    urnsgrp[i].position.set(urnsdistance*Math.sin(i*Math.PI/2/3),0,urnsdistance*Math.cos(i*Math.PI/2/3));
+    group.add(urnsgrp[i]);
+}
+
+const nptngrp = [];
+for (let i = 0; i<12; i++){
+    const nptn = new THREE.Mesh(nptnMesh, nptnMat);
+    nptn.material.flatShading = false;
+    nptngrp.push(nptn);
+}
+for(let i = 0; i<12; i++){
+    nptngrp[i].position.set(nptndistance*Math.sin(i*Math.PI/2/3),0,nptndistance*Math.cos(i*Math.PI/2/3));
+    group.add(nptngrp[i]);
+}
+
+const plutogrp = [];
+for (let i = 0; i<12; i++){
+    const pluto = new THREE.Mesh(plutoMesh, plutoMat);
+    pluto.material.flatShading = false;
+    plutogrp.push(pluto);
+}
+for(let i = 0; i<12; i++){
+    plutogrp[i].position.set(plutodistance*Math.sin(i*Math.PI/2/3),0,plutodistance*Math.cos(i*Math.PI/2/3));
+    group.add(plutogrp[i]);
 }
 
 const lines = [];
-
-const lineMaterial = new THREE.LineBasicMaterial({color: 0xFFFFFF, linewidth: 100});
-
 for (let i = 0; i < 12; i++) {
     // Calculate the position of the current segment
     const angle = i * Math.PI/2/3;
-    const x = dis * Math.cos(angle);
-    const y = dis * Math.sin(angle);
+    const x = erthdistance * Math.cos(angle);
+    const y = erthdistance * Math.sin(angle);
 
     // Create a line segment
-    const geometry = new THREE.BufferGeometry().setFromPoints([
-        new THREE.Vector3(0, -2, 0), // Start point (vertical line segment)
-        new THREE.Vector3(0, 2, 0)   // End point (vertical line segment)
-    ]);
-    const line = new THREE.Line(geometry, lineMaterial);
+    const line = new THREE.Line(lineMesh, lineMat);
 
     // Position the line segment in the circular pattern
     line.position.set(x, 0, y);
@@ -76,8 +202,6 @@ for (let i = 0; i < 12; i++) {
     lines.push(line);
     group2.add(line);
 }
-
-//group.add(lines);
 
 scene.add(group);
 scene.add(group2);
