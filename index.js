@@ -244,8 +244,8 @@ const animate = () => {
     requestAnimationFrame(animate);
 
     // Rotate the cube
-    group.rotation.y += 0.00067;
-    group2.rotation.y += 0.00067;
+    group.rotation.y += (0.00067 * revolutionMultiplier);
+    group2.rotation.y += (0.00067 * revolutionMultiplier);
 
     mrcryGroup.rotation.y += (0.00107 * revolutionMultiplier); // 107mph
     vnusGroup.rotation.y += (0.00078 * revolutionMultiplier); // 78mph
@@ -257,7 +257,7 @@ const animate = () => {
     plutoGroup.rotation.y += (0.00010 * revolutionMultiplier); // 10mph
 
     lines.forEach(lin => {
-        lin.rotation.y -= 0.00067;
+        lin.rotation.y -= (0.00067 * revolutionMultiplier);
     });
 
 
