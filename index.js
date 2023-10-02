@@ -21,8 +21,19 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 camera.position.z = 0;
 camera.position.y = 90;
 camera.lookAt(new THREE.Vector3(0,0,0));
+
+// Groups
 const group = new THREE.Group();
 const group2 = new THREE.Group();
+
+const mrcryGroup = new THREE.Group();
+const vnusGroup = new THREE.Group();
+const mrsGroup = new THREE.Group();
+const jptrGroup = new THREE.Group();
+const strnGroup = new THREE.Group();
+const urnsGroup = new THREE.Group();
+const nptnGroup = new THREE.Group();
+const plutoGroup = new THREE.Group();
 
 // Renderer
 const renderer = new THREE.WebGLRenderer();
@@ -91,7 +102,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     mrcrygrp[i].position.set(mrcrydistance*Math.sin(i*Math.PI/2/3),0,mrcrydistance*Math.cos(i*Math.PI/2/3));
-    group.add(mrcrygrp[i]);
+    mrcryGroup.add(mrcrygrp[i]);
 }
 
 const vnusgrp = [];
@@ -102,7 +113,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     vnusgrp[i].position.set(vnusdistance*Math.sin(i*Math.PI/2/3),0,vnusdistance*Math.cos(i*Math.PI/2/3));
-    group.add(vnusgrp[i]);
+    vnusGroup.add(vnusgrp[i]);
 }
 
 const erthgrp = [];
@@ -124,7 +135,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     mrsgrp[i].position.set(mrsdistance*Math.sin(i*Math.PI/2/3),0,mrsdistance*Math.cos(i*Math.PI/2/3));
-    group.add(mrsgrp[i]);
+    mrsGroup.add(mrsgrp[i]);
 }
 
 const jptrgrp = [];
@@ -135,7 +146,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     jptrgrp[i].position.set(jptrdistance*Math.sin(i*Math.PI/2/3),0,jptrdistance*Math.cos(i*Math.PI/2/3));
-    group.add(jptrgrp[i]);
+    jptrGroup.add(jptrgrp[i]);
 }
 
 const strngrp = [];
@@ -146,7 +157,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     strngrp[i].position.set(strndistance*Math.sin(i*Math.PI/2/3),0,strndistance*Math.cos(i*Math.PI/2/3));
-    group.add(strngrp[i]);
+    strnGroup.add(strngrp[i]);
 }
 
 const urnsgrp = [];
@@ -157,7 +168,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     urnsgrp[i].position.set(urnsdistance*Math.sin(i*Math.PI/2/3),0,urnsdistance*Math.cos(i*Math.PI/2/3));
-    group.add(urnsgrp[i]);
+    urnsGroup.add(urnsgrp[i]);
 }
 
 const nptngrp = [];
@@ -168,7 +179,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     nptngrp[i].position.set(nptndistance*Math.sin(i*Math.PI/2/3),0,nptndistance*Math.cos(i*Math.PI/2/3));
-    group.add(nptngrp[i]);
+    urnptnGroup.add(nptngrp[i]);
 }
 
 const plutogrp = [];
@@ -179,7 +190,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     plutogrp[i].position.set(plutodistance*Math.sin(i*Math.PI/2/3),0,plutodistance*Math.cos(i*Math.PI/2/3));
-    group.add(plutogrp[i]);
+    plutoGroup.add(plutogrp[i]);
 }
 
 const lines = [];
@@ -223,11 +234,20 @@ const animate = () => {
     requestAnimationFrame(animate);
 
     // Rotate the cube
-    group.rotation.y += 0.005;
-    group2.rotation.y += 0.005;
+    group.rotation.y += 0.00067;
+    group2.rotation.y += 0.00067;
+
+    mrcryGroup.rotation.y += 0.00107;
+    vnusGroup.rotation.y += 0.00078;
+    mrsGroup.rotation.y += 0.00053;
+    jptrGroup.rotation.y += 0.00029;
+    strnGroup.rotation.y += 0.00021;
+    urnsGroup.rotation.y += 0.00015;
+    nptnGroup.rotation.y += 0.00012;
+    plutoGroup.rotation.y += 0.00010;
 
     lines.forEach(lin => {
-        lin.rotation.y -= 0.005;
+        lin.rotation.y -= 0.00067;
     });
 
 
