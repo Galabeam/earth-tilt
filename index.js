@@ -1,6 +1,8 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.module.js';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
 
+var revolutionMultiplier = 1
+
 const texture = new THREE.TextureLoader();
 const scene = new THREE.Scene();
 
@@ -245,14 +247,14 @@ const animate = () => {
     group.rotation.y += 0.00067;
     group2.rotation.y += 0.00067;
 
-    mrcryGroup.rotation.y += 0.00107;
-    vnusGroup.rotation.y += 0.00078;
-    mrsGroup.rotation.y += 0.00053;
-    jptrGroup.rotation.y += 0.00029;
-    strnGroup.rotation.y += 0.00021;
-    urnsGroup.rotation.y += 0.00015;
-    nptnGroup.rotation.y += 0.00012;
-    plutoGroup.rotation.y += 0.00010;
+    mrcryGroup.rotation.y += (0.00107 * revolutionMultiplier); // 107mph
+    vnusGroup.rotation.y += (0.00078 * revolutionMultiplier); // 78mph
+    mrsGroup.rotation.y += (0.00053 * revolutionMultiplier); // 53mph
+    jptrGroup.rotation.y += (0.00029 * revolutionMultiplier); // 29mph
+    strnGroup.rotation.y += (0.00021 * revolutionMultiplier); // 21mph
+    urnsGroup.rotation.y += (0.00015 * revolutionMultiplier); // 15mph
+    nptnGroup.rotation.y += (0.00012 * revolutionMultiplier); // 12mph
+    plutoGroup.rotation.y += (0.00010 * revolutionMultiplier); // 10mph
 
     lines.forEach(lin => {
         lin.rotation.y -= 0.00067;
@@ -283,6 +285,11 @@ document.addEventListener('keydown', event => {
 
     if (key === 'shift') {
         shift = true;
+    }
+    if (key === 'a') {
+        revolutionMultiplier += 1
+    } else if (key === 'd') {
+        revolutionMultiplier -= 1
     }
     
     if (shift == false) {
