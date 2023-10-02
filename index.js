@@ -279,6 +279,8 @@ window.addEventListener("resize", () => {
     renderer.setSize(newWidth, newHeight);
 });
 
+const revmult = document.getElementById("revmult");
+revmult.value = 1
 var shift = false;
 document.addEventListener('keydown', event => {
     const key = event.key.toLowerCase();
@@ -317,6 +319,8 @@ document.addEventListener('keydown', event => {
             })
         }
     }
+
+    revmult.value = revolutionMultiplier
 });
 
 document.addEventListener('keyup', event => {
@@ -325,4 +329,10 @@ document.addEventListener('keyup', event => {
     if (key === 'shift') {
         shift = false;
     }
+});
+
+var nonumrevmult = 1
+revmult.addEventListener('input', function(){
+    nonumrevmult = revmult.value
+    revolutionMultiplier = nonumrevmult.replace(/\D/g,'')
 });
