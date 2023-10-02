@@ -216,6 +216,14 @@ for (let i = 0; i < 12; i++) {
 
 scene.add(group);
 scene.add(group2);
+scene.add(mrcryGroup);
+scene.add(vnusGroup);
+scene.add(mrsGroup);
+scene.add(jptrGroup);
+scene.add(strnGroup);
+scene.add(urnsGroup);
+scene.add(nptnGroup);
+scene.add(plutoGroup);
 
 // Animation loop
 var time = new Date();
