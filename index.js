@@ -179,7 +179,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     nptngrp[i].position.set(nptndistance*Math.sin(i*Math.PI/2/3),0,nptndistance*Math.cos(i*Math.PI/2/3));
-    urnptnGroup.add(nptngrp[i]);
+    urnsGroup.add(nptngrp[i]);
 }
 
 const plutogrp = [];
