@@ -194,8 +194,8 @@ for(let i = 0; i<12; i++){
     PlutoGroup.add(plutogrp[i]);
 }
 
+// Add all planets to their own group
 for (let i = 0; i < 12; i++) {
-    // Add all planets to their own group
     MercuryGroup.add(mrcrygrp[i])
     VenusGroup.add(vnusgrp[i])
     EarthGroup.add(erthgrp[i])
@@ -206,19 +206,18 @@ for (let i = 0; i < 12; i++) {
     NeptuneGroup.add(nptngrp[i])
     PlutoGroup.add(plutogrp[i])
     console.log(mrcrygrp[i])
-
-    // Add all planets to a group
-    Planets.add(MercuryGroup[i]);
-    Planets.add(VenusGroup[i]);
-    Planets.add(EarthGroup[i]);
-    Planets.add(MarsGroup[i]);
-    Planets.add(JupiterGroup[i]);
-    Planets.add(SaturnGroup[i]);
-    Planets.add(UranusGroup[i]);
-    Planets.add(NeptuneGroup[i]);
-    Planets.add(PlutoGroup[i]);
-    console.log(MercuryGroup[i])
 }
+
+// Add all planets to a group
+Planets.add(MercuryGroup);
+Planets.add(VenusGroup);
+Planets.add(EarthGroup);
+Planets.add(MarsGroup);
+Planets.add(JupiterGroup);
+Planets.add(SaturnGroup);
+Planets.add(UranusGroup);
+Planets.add(NeptuneGroup);
+Planets.add(PlutoGroup);
 
 // Planet shadows
 for(let i = 0; i < Planets.length; i++){
