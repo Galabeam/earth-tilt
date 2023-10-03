@@ -25,11 +25,9 @@ camera.position.y = 90;
 camera.lookAt(new THREE.Vector3(0,0,0));
 
 // Groups
-const group = new THREE.Group();
-const group2 = new THREE.Group();
-
 const mrcryGroup = new THREE.Group();
 const vnusGroup = new THREE.Group();
+const erthGroup = new THREE.Group();
 const mrsGroup = new THREE.Group();
 const jptrGroup = new THREE.Group();
 const strnGroup = new THREE.Group();
@@ -56,11 +54,6 @@ const urnsMesh = new THREE.SphereGeometry(0.9, 32, 32);
 const nptnMesh = new THREE.SphereGeometry(0.85, 32, 32);
 const plutoMesh = new THREE.SphereGeometry(0.3, 32, 32);
 
-const lineMesh = new THREE.BufferGeometry().setFromPoints([
-    new THREE.Vector3(0, -2, 0), // Start point (vertical line segment)
-    new THREE.Vector3(0, 2, 0)   // End point (vertical line segment)
-]);
-
 // Materials
 const sunMat = new THREE.MeshToonMaterial({ map: sunWrap });
 const mrcryMat = new THREE.MeshStandardMaterial({ map: mrcryWrap });
@@ -72,8 +65,6 @@ const strnMat = new THREE.MeshStandardMaterial({ map: strnWrap });
 const urnsMat = new THREE.MeshStandardMaterial({ map: urnsWrap });
 const nptnMat = new THREE.MeshStandardMaterial({ map: nptnWrap });
 const plutoMat = new THREE.MeshStandardMaterial({ map: plutoWrap });
-
-const lineMat = new THREE.LineBasicMaterial({color: 0xFFFFFF, linewidth: 100});
 
 // Meshes
 const sun = new THREE.Mesh(sunMesh, sunMat);
@@ -127,7 +118,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     erthgrp[i].position.set(erthdistance*Math.sin(i*Math.PI/2/3),0,erthdistance*Math.cos(i*Math.PI/2/3));
-    group.add(erthgrp[i]);
+    erthGroup.add(erthgrp[i]);
 }
 
 const mrsgrp = [];
@@ -196,31 +187,16 @@ for(let i = 0; i<12; i++){
     plutoGroup.add(plutogrp[i]);
 }
 
-const lines = [];
 for (let i = 0; i < 12; i++) {
     // Calculate the position of the current segment
     const angle = i * Math.PI/2/3;
     const x = erthdistance * Math.cos(angle);
     const y = erthdistance * Math.sin(angle);
-
-    // Create a line segment
-    const line = new THREE.Line(lineMesh, lineMat);
-
-    // Position the line segment in the circular pattern
-    line.position.set(x, 0, y);
-
-    // Apply a slight rotation to the line segment
-    line.rotation.z = 0.4;
-
-    // Add the line segment to the scene
-    lines.push(line);
-    group2.add(line);
 }
 
-scene.add(group);
-scene.add(group2);
 scene.add(mrcryGroup);
 scene.add(vnusGroup);
+scene.add(erthGroup);
 scene.add(mrsGroup);
 scene.add(jptrGroup);
 scene.add(strnGroup);
@@ -234,22 +210,15 @@ var time = new Date();
 const animate = () => {
     requestAnimationFrame(animate);
 
-    group.rotation.y += (0.00067 * revolutionMultiplier);
-    group2.rotation.y += (0.00067 * revolutionMultiplier);
-
     mrcryGroup.rotation.y += (0.00107 * revolutionMultiplier); // 107mph
     vnusGroup.rotation.y += (0.00078 * revolutionMultiplier); // 78mph
+    erthGroup.rotation.y += (0.00067 * revolutionMultiplier); // 67mph
     mrsGroup.rotation.y += (0.00053 * revolutionMultiplier); // 53mph
     jptrGroup.rotation.y += (0.00029 * revolutionMultiplier); // 29mph
     strnGroup.rotation.y += (0.00021 * revolutionMultiplier); // 21mph
     urnsGroup.rotation.y += (0.00015 * revolutionMultiplier); // 15mph
     nptnGroup.rotation.y += (0.00012 * revolutionMultiplier); // 12mph
     plutoGroup.rotation.y += (0.00010 * revolutionMultiplier); // 10mph
-
-    lines.forEach(lin => {
-        lin.rotation.y -= (0.00067 * revolutionMultiplier);
-    });
-
 
     time = new Date();
     controls.update();
@@ -273,54 +242,16 @@ window.addEventListener("resize", () => {
 // Input
 const revmult = document.getElementById("revmult");
 revmult.value = 1
-var shift = false;
 document.addEventListener('keydown', event => {
     const key = event.key.toLowerCase();
 
-    if (key === 'shift') {
-        shift = true;
-    }
     if (key === 'a') {
         revolutionMultiplier += 1
     } else if (key === 'd') {
         revolutionMultiplier -= 1
     }
-    
-    if (shift == false) {
-        if (key === 'w') {
-            // Rotate spheres about their X-axes in the positive direction
-            lines.forEach( lin => {
-                lin.rotation.z += 0.01;
-            })
-        } else if (key === 's') {
-            // Rotate spheres about their X-axes in the positive direction
-            lines.forEach( lin => {
-                lin.rotation.z -= 0.01;
-            })
-        }
-    }
-    else if (shift == true) {
-        if (key === 'w') {
-            lines.forEach( lin => {
-                lin.rotation.z += 1;
-            })
-        }
-        else if (key === 's') {
-            lines.forEach( lin => {
-                lin.rotation.z -= 1;
-            })
-        }
-    }
 
     revmult.value = revolutionMultiplier
-});
-
-document.addEventListener('keyup', event => {
-    const key = event.key.toLowerCase();
-
-    if (key === 'shift') {
-        shift = false;
-    }
 });
 
 var nonumrevmult = 1
