@@ -125,7 +125,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     erthgrp[i].position.set(erthdistance*Math.sin(i*Math.PI/2/3),0,erthdistance*Math.cos(i*Math.PI/2/3));
-    erthGroup.add(erthgrp[i]);
+    EarthGroup.add(erthgrp[i]);
 }
 
 const mrsgrp = [];
@@ -136,7 +136,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     mrsgrp[i].position.set(mrsdistance*Math.sin(i*Math.PI/2/3),0,mrsdistance*Math.cos(i*Math.PI/2/3));
-    mrsGroup.add(mrsgrp[i]);
+    MarsGroup.add(mrsgrp[i]);
 }
 
 const jptrgrp = [];
@@ -147,7 +147,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     jptrgrp[i].position.set(jptrdistance*Math.sin(i*Math.PI/2/3),0,jptrdistance*Math.cos(i*Math.PI/2/3));
-    jptrGroup.add(jptrgrp[i]);
+    JupiterGroup.add(jptrgrp[i]);
 }
 
 const strngrp = [];
@@ -158,7 +158,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     strngrp[i].position.set(strndistance*Math.sin(i*Math.PI/2/3),0,strndistance*Math.cos(i*Math.PI/2/3));
-    strnGroup.add(strngrp[i]);
+    SaturnGroup.add(strngrp[i]);
 }
 
 const urnsgrp = [];
@@ -169,7 +169,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     urnsgrp[i].position.set(urnsdistance*Math.sin(i*Math.PI/2/3),0,urnsdistance*Math.cos(i*Math.PI/2/3));
-    urnsGroup.add(urnsgrp[i]);
+    UranusGroup.add(urnsgrp[i]);
 }
 
 const nptngrp = [];
@@ -180,7 +180,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     nptngrp[i].position.set(nptndistance*Math.sin(i*Math.PI/2/3),0,nptndistance*Math.cos(i*Math.PI/2/3));
-    nptnGroup.add(nptngrp[i]);
+    NeptuneGroup.add(nptngrp[i]);
 }
 
 const plutogrp = [];
@@ -191,7 +191,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     plutogrp[i].position.set(plutodistance*Math.sin(i*Math.PI/2/3),0,plutodistance*Math.cos(i*Math.PI/2/3));
-    plutoGroup.add(plutogrp[i]);
+    PlutoGroup.add(plutogrp[i]);
 }
 
 // Add all planets to their own group
