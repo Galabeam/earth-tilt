@@ -25,6 +25,8 @@ camera.position.y = 90;
 camera.lookAt(new THREE.Vector3(0,0,0));
 
 // Groups
+const Planets = new THREE.Group();
+
 const mrcryGroup = new THREE.Group();
 const vnusGroup = new THREE.Group();
 const erthGroup = new THREE.Group();
@@ -39,6 +41,8 @@ const plutoGroup = new THREE.Group();
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 const controls = new OrbitControls( camera, renderer.domElement );
 
@@ -75,6 +79,10 @@ scene.add(sun);
 const sunlight = new THREE.PointLight(0xffffff, 2);
 sunlight.position.set(0, 0, 0);
 scene.add(sunlight);
+sunlight.shadow.mapSize.width = 512;
+sunlight.shadow.mapSize.height = 512;
+sunlight.shadow.camera.near = 0.5;
+sunlight.shadow.camera.far = 1000;
 
 // Distance from sun
 let mrcrydistance = 5;
@@ -92,6 +100,8 @@ const mrcrygrp = [];
 for (let i = 0; i<12; i++){
     const mrcry = new THREE.Mesh(mrcryMesh, mrcryMat);
     mrcry.material.flatShading = false;
+    mrcry.castShadow = true;
+    mrcry.receiveShadow = true;
     mrcrygrp.push(mrcry);
 }
 for(let i = 0; i<12; i++){
@@ -185,6 +195,25 @@ for (let i = 0; i<12; i++){
 for(let i = 0; i<12; i++){
     plutogrp[i].position.set(plutodistance*Math.sin(i*Math.PI/2/3),0,plutodistance*Math.cos(i*Math.PI/2/3));
     plutoGroup.add(plutogrp[i]);
+}
+
+// Add all planets to a group
+for(let i = 0; i<12; i++){
+    Planets.add(mrcrygrp[i]);
+    Planets.add(vnusGroup[i]);
+    Planets.add(erthGroup[i]);
+    Planets.add(mrsGroup[i]);
+    Planets.add(jptrGroup[i]);
+    Planets.add(strnGroup[i]);
+    Planets.add(urnsGroup[i]);
+    Planets.add(nptnGroup[i]);
+    Planets.add(plutoGroup[i]);
+}
+
+// Planet shadows
+for(let i = 0; i<12; i++){
+    Planets[i].castShadow = true;
+    Planets[i].receiveShadow = true;
 }
 
 for (let i = 0; i < 12; i++) {
