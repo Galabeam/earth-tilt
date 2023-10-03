@@ -234,15 +234,15 @@ for (let i = 0; i < 12; i++) {
     const y = erthdistance * Math.sin(angle);
 }
 
-scene.add(mrcryGroup);
-scene.add(vnusGroup);
-scene.add(erthGroup);
-scene.add(mrsGroup);
-scene.add(jptrGroup);
-scene.add(strnGroup);
-scene.add(urnsGroup);
-scene.add(nptnGroup);
-scene.add(plutoGroup);
+scene.add(MercuryGroup);
+scene.add(VenusGroup);
+scene.add(EarthGroup);
+scene.add(MarsGroup);
+scene.add(JupiterGroup);
+scene.add(SaturnGroup);
+scene.add(UranusGroup);
+scene.add(NeptuneGroup);
+scene.add(PlutoGroup);
 
 // Revolution
 var time = new Date();
@@ -250,15 +250,15 @@ var time = new Date();
 const animate = () => {
     requestAnimationFrame(animate);
 
-    mrcryGroup.rotation.y += (0.00107 * revolutionMultiplier); // 107mph
-    vnusGroup.rotation.y += (0.00078 * revolutionMultiplier); // 78mph
-    erthGroup.rotation.y += (0.00067 * revolutionMultiplier); // 67mph
-    mrsGroup.rotation.y += (0.00053 * revolutionMultiplier); // 53mph
-    jptrGroup.rotation.y += (0.00029 * revolutionMultiplier); // 29mph
-    strnGroup.rotation.y += (0.00021 * revolutionMultiplier); // 21mph
-    urnsGroup.rotation.y += (0.00015 * revolutionMultiplier); // 15mph
-    nptnGroup.rotation.y += (0.00012 * revolutionMultiplier); // 12mph
-    plutoGroup.rotation.y += (0.00010 * revolutionMultiplier); // 10mph
+    MercuryGroup.rotation.y += (0.00107 * revolutionMultiplier); // 107mph
+    VenusGroup.rotation.y += (0.00078 * revolutionMultiplier); // 78mph
+    EarthGroup.rotation.y += (0.00067 * revolutionMultiplier); // 67mph
+    MarsGroup.rotation.y += (0.00053 * revolutionMultiplier); // 53mph
+    JupiterGroup.rotation.y += (0.00029 * revolutionMultiplier); // 29mph
+    SaturnGroup.rotation.y += (0.00021 * revolutionMultiplier); // 21mph
+    UranusGroup.rotation.y += (0.00015 * revolutionMultiplier); // 15mph
+    NeptuneGroup.rotation.y += (0.00012 * revolutionMultiplier); // 12mph
+    PlutoGroup.rotation.y += (0.00010 * revolutionMultiplier); // 10mph
 
     time = new Date();
     controls.update();
