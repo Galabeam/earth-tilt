@@ -96,6 +96,7 @@ let urnsdistance = 55;
 let nptndistance = 66;
 let plutodistance = 78;
 
+// Objects
 const mrcrygrp = [];
 for (let i = 0; i<12; i++){
     const mrcry = new THREE.Mesh(mrcryMesh, mrcryMat);
@@ -227,23 +228,12 @@ scene.add(urnsGroup);
 scene.add(nptnGroup);
 scene.add(plutoGroup);
 
-// Animation loop
+// Revolution
 var time = new Date();
-const center = new THREE.Vector3(0, 0, 0);
-
-// Set initial translation values (to position the sphere initially)
-const translateX = 2; // Change this value to set the initial position along the X-axis
-const translateY = 0; // Change this value to set the initial position along the Y-axis
-const translateZ = 0; // Change this value to set the initial position along the Z-axis
-
-const radius = 2;       // Change this value to set the radius of the orbit
-const rotationSpeed = 0.01; // Change this value to control the speed of revolution
-
 
 const animate = () => {
     requestAnimationFrame(animate);
 
-    // Rotate the cube
     group.rotation.y += (0.00067 * revolutionMultiplier);
     group2.rotation.y += (0.00067 * revolutionMultiplier);
 
@@ -268,6 +258,7 @@ const animate = () => {
 
 animate();
 
+// Window fix
 window.addEventListener("resize", () => {
     // Get the new window dimensions
     const newWidth = window.innerWidth;
@@ -279,6 +270,7 @@ window.addEventListener("resize", () => {
     renderer.setSize(newWidth, newHeight);
 });
 
+// Input
 const revmult = document.getElementById("revmult");
 revmult.value = 1
 var shift = false;
