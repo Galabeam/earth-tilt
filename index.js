@@ -205,7 +205,6 @@ for (let i = 0; i < 12; i++) {
     UranusGroup.add(urnsgrp[i])
     NeptuneGroup.add(nptngrp[i])
     PlutoGroup.add(plutogrp[i])
-    console.log(mrcrygrp[i])
 }
 
 // Add all planets to a group
@@ -220,7 +219,7 @@ Planets.add(NeptuneGroup);
 Planets.add(PlutoGroup);
 
 // Planet shadows
-for(let i = 0; i < Planets.length; i++){
+for(let i = 0; i < 108; i++){
     Planets[i].castShadow = true;
     Planets[i].receiveShadow = true;
     Planets[i].flatShading = false;
@@ -233,15 +232,7 @@ for (let i = 0; i < 12; i++) {
     const y = erthdistance * Math.sin(angle);
 }
 
-scene.add(MercuryGroup);
-scene.add(VenusGroup);
-scene.add(EarthGroup);
-scene.add(MarsGroup);
-scene.add(JupiterGroup);
-scene.add(SaturnGroup);
-scene.add(UranusGroup);
-scene.add(NeptuneGroup);
-scene.add(PlutoGroup);
+scene.add(Planets);
 
 // Revolution
 var time = new Date();
