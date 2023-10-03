@@ -100,8 +100,6 @@ const mrcrygrp = [];
 for (let i = 0; i<12; i++){
     const mrcry = new THREE.Mesh(mrcryMesh, mrcryMat);
     mrcry.material.flatShading = false;
-    mrcry.castShadow = true;
-    mrcry.receiveShadow = true;
     mrcrygrp.push(mrcry);
 }
 for(let i = 0; i<12; i++){
@@ -199,7 +197,7 @@ for(let i = 0; i<12; i++){
 
 // Add all planets to a group
 for(let i = 0; i<12; i++){
-    Planets.add(mrcrygrp[i]);
+    Planets.add(mrcryGroup[i]);
     Planets.add(vnusGroup[i]);
     Planets.add(erthGroup[i]);
     Planets.add(mrsGroup[i]);
