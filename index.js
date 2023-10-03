@@ -27,15 +27,15 @@ camera.lookAt(new THREE.Vector3(0,0,0));
 // Groups
 const Planets = new THREE.Group();
 
-const mrcryGroup = new THREE.Group();
-const vnusGroup = new THREE.Group();
-const erthGroup = new THREE.Group();
-const mrsGroup = new THREE.Group();
-const jptrGroup = new THREE.Group();
-const strnGroup = new THREE.Group();
-const urnsGroup = new THREE.Group();
-const nptnGroup = new THREE.Group();
-const plutoGroup = new THREE.Group();
+const MercuryGroup = new THREE.Group();
+const VenusGroup = new THREE.Group();
+const EarthGroup = new THREE.Group();
+const MarsGroup = new THREE.Group();
+const JupiterGroup = new THREE.Group();
+const SaturnGroup = new THREE.Group();
+const UranusGroup = new THREE.Group();
+const NeptuneGroup = new THREE.Group();
+const PlutoGroup = new THREE.Group();
 
 // Renderer
 const renderer = new THREE.WebGLRenderer();
@@ -99,12 +99,11 @@ let plutodistance = 78;
 const mrcrygrp = [];
 for (let i = 0; i<12; i++){
     const mrcry = new THREE.Mesh(mrcryMesh, mrcryMat);
-    mrcry.material.flatShading = false;
     mrcrygrp.push(mrcry);
 }
 for(let i = 0; i<12; i++){
     mrcrygrp[i].position.set(mrcrydistance*Math.sin(i*Math.PI/2/3),0,mrcrydistance*Math.cos(i*Math.PI/2/3));
-    mrcryGroup.add(mrcrygrp[i]);
+    MercuryGroup.add(mrcrygrp[i]);
 }
 
 const vnusgrp = [];
@@ -115,7 +114,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     vnusgrp[i].position.set(vnusdistance*Math.sin(i*Math.PI/2/3),0,vnusdistance*Math.cos(i*Math.PI/2/3));
-    vnusGroup.add(vnusgrp[i]);
+    VenusGroup.add(vnusgrp[i]);
 }
 
 const erthgrp = [];
@@ -181,7 +180,7 @@ for (let i = 0; i<12; i++){
 }
 for(let i = 0; i<12; i++){
     nptngrp[i].position.set(nptndistance*Math.sin(i*Math.PI/2/3),0,nptndistance*Math.cos(i*Math.PI/2/3));
-    urnsGroup.add(nptngrp[i]);
+    nptnGroup.add(nptngrp[i]);
 }
 
 const plutogrp = [];
@@ -195,23 +194,37 @@ for(let i = 0; i<12; i++){
     plutoGroup.add(plutogrp[i]);
 }
 
+// Add all planets to their own group
+for (let i = 0; i < 12; i++) {
+    MercuryGroup.add(mrcrygrp[i])
+    VenusGroup.add(vnusgrp[i])
+    EarthGroup.add(erthgrp[i])
+    MarsGroup.add(mrsgrp[i])
+    JupiterGroup.add(jptrgrp[i])
+    SaturnGroup.add(strngrp[i])
+    UranusGroup.add(urnsgrp[i])
+    NeptuneGroup.add(nptngrp[i])
+    PlutoGroup.add(plutogrp[i])
+}
+
 // Add all planets to a group
-for(let i = 0; i<12; i++){
-    Planets.add(mrcryGroup[i]);
-    Planets.add(vnusGroup[i]);
-    Planets.add(erthGroup[i]);
-    Planets.add(mrsGroup[i]);
-    Planets.add(jptrGroup[i]);
-    Planets.add(strnGroup[i]);
-    Planets.add(urnsGroup[i]);
-    Planets.add(nptnGroup[i]);
-    Planets.add(plutoGroup[i]);
+for (let i = 0; i < 12; i++) {
+    Planets.add(MercuryGroup[i]);
+    Planets.add(VenusGroup[i]);
+    Planets.add(EarthGroup[i]);
+    Planets.add(MarsGroup[i]);
+    Planets.add(JupiterGroup[i]);
+    Planets.add(SaturnGroup[i]);
+    Planets.add(UranusGroup[i]);
+    Planets.add(NeptuneGroup[i]);
+    Planets.add(PlutoGroup[i]);
 }
 
 // Planet shadows
-for(let i = 0; i<12; i++){
+for(let i = 0; i < Planets.length; i++){
     Planets[i].castShadow = true;
     Planets[i].receiveShadow = true;
+    Planets[i].flatShading = false;
 }
 
 for (let i = 0; i < 12; i++) {
