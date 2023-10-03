@@ -218,13 +218,6 @@ Planets.add(UranusGroup);
 Planets.add(NeptuneGroup);
 Planets.add(PlutoGroup);
 
-// Planet shadows
-for(let i = 0; i < 108; i++){
-    Planets[i].castShadow = true;
-    Planets[i].receiveShadow = true;
-    Planets[i].flatShading = false;
-}
-
 for (let i = 0; i < 12; i++) {
     // Calculate the position of the current segment
     const angle = i * Math.PI/2/3;
