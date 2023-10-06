@@ -270,6 +270,7 @@ window.addEventListener("resize", () => {
 
 // Input
 var debug = false;
+var debugWireframe = true;
 const allMats = [];
 scene.traverse(function(obj) {
     if (obj.material) allMats.push(obj.material);
@@ -292,8 +293,10 @@ document.addEventListener('keydown', event => {
 
             scene.add(debugLight)
 
-            for (let i = 0; i < allMats.length; i++) {
-                allMats[i].wireframe = true;
+            if (debugWireframe == true) {
+                for (let i = 0; i < allMats.length; i++) {
+                    allMats[i].wireframe = true;
+                }
             }
         } else if (debug == true) {
             debug = false
@@ -305,11 +308,27 @@ document.addEventListener('keydown', event => {
             }
         }
     }
+    if (key === 't') {
+        if (debug == true) {
+            if (debugWireframe == false) {
+                debugWireframe = true;
+
+                for (let i = 0; i < allMats.length; i++) {
+                    allMats[i].wireframe = true;
+                }
+            } else if (debugWireframe == true) {
+                debugWireframe = false;
+
+                for (let i = 0; i < allMats.length; i++) {
+                    allMats[i].wireframe = false;
+                }
+            }
+        }
+    }
     revmult.value = revolutionMultiplier
 });
 
 var nonumrevmult = 1
-var isNegative = false
 revmult.addEventListener('input', function(){
     nonumrevmult = revmult.value
     revolutionMultiplier = nonumrevmult.replace(/(?!^[+-])[^0-9.]/g,'');

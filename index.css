@@ -47,11 +47,18 @@ body {
 	left: 15px;
 	bottom: 15px;
 	width: 34ex;
-	height: 16em;
+	height: 18em;
 
 	text-align: center;
 	font-size: 15px;
 	background-color: rgba(64,64,64,0.5);
+	font-family: Roboto;
+	color: white;
+}
+.sub {
+	margin-left: 25%;
+	text-align: center;
+	font-size: 13px;
 	font-family: Roboto;
 	color: white;
 }
