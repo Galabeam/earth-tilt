@@ -256,6 +256,7 @@ const animate = () => {
         mrsgrp[i].rotation.y += (0.24 * ts)
         jptrgrp[i].rotation.y += (0.09 * ts)
         strngrp[i].rotation.y += (0.01 * ts)
+            strnRingGrp[i].rotation.z += (0.01 * ts)
         urnsgrp[i].rotation.y += (0.017 * ts)
         nptngrp[i].rotation.y += (0.016 * ts)
         plutogrp[i].rotation.y += (0.06 * ts)
