@@ -250,7 +250,7 @@ const animate = () => {
     PlutoGroup.rotation.y += (0.00010 * ts); // 10mph
 
     for (let i = 0; i < 12; i++) {
-        mrcrygrp[i].rotation.y += (0.059 * ts)
+        mrcrygrp[i].rotation.y += (0.04 * ts)
         vnusgrp[i].rotation.y += (0.0243 * ts)
         erthgrp[i].rotation.y += (0.24 * ts)
         mrsgrp[i].rotation.y += (0.24 * ts)
