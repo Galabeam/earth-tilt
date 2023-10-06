@@ -250,16 +250,16 @@ const animate = () => {
     PlutoGroup.rotation.y += (0.00010 * ts); // 10mph
 
     for (let i = 0; i < 12; i++) {
-        mrcrygrp[i].rotation.y += (0.04 * ts)
-        vnusgrp[i].rotation.y += (0.0243 * ts)
-        erthgrp[i].rotation.y += (0.24 * ts)
-        mrsgrp[i].rotation.y += (0.24 * ts)
-        jptrgrp[i].rotation.y += (0.09 * ts)
-        strngrp[i].rotation.y += (0.01 * ts)
-            strnRingGrp[i].rotation.z += (0.01 * ts)
-        urnsgrp[i].rotation.y += (0.017 * ts)
-        nptngrp[i].rotation.y += (0.016 * ts)
-        plutogrp[i].rotation.y += (0.06 * ts)
+        mrcrygrp[i].rotation.y += (0.00677 * ts) // 6.77mph
+        vnusgrp[i].rotation.y += (0.00405 * ts) // 4.05mph
+        erthgrp[i].rotation.y += (0.1037 * ts) // 1037mph
+        mrsgrp[i].rotation.y += (0.054 * ts) // 540mph
+        jptrgrp[i].rotation.y += (2.8273 * ts) // 28273mph
+        strngrp[i].rotation.y += (2.3 * ts) // 23000mph
+            strnRingGrp[i].rotation.z += (2.3 * ts)
+        urnsgrp[i].rotation.y += (1.529 * ts) // 15290mph
+        nptngrp[i].rotation.y += (0.6 * ts) // 6000mph
+        plutogrp[i].rotation.y += (0.003 * ts) // 30mph
     }
 
     time = new Date();
