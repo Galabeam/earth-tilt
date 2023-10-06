@@ -8,6 +8,17 @@ body {
 	overflow: hidden;
 }
 
+#debugConsole {
+	position: absolute;
+	float: right;
+	width: 35%;
+	height: 90%;
+	top: 5%;
+	bottom: 5%;
+	background: rgb(128,128,128);
+	color: rgb(255,255,255);
+}
+
 #revmultcontainer {
 	position: absolute;
 	left: 15px;

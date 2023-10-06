@@ -7,6 +7,7 @@
 		<title>around the world 9999x</title>
 	</head>
 	<body>
+		<div id="debugConsole"></div>
 		<div id="revmultcontainer">
 			<p>Revolution Multiplier:&nbsp;<input id="revmult"></input></p>
 		</div>
@@ -30,3 +31,10 @@
 		<link rel="stylesheet" href="index.css">
 	</body>
 </html>
+<script>
+	window.onerror = function(error, url, line) {
+		const newLine = document.createElement('p');
+		newLine.parentElement = document.getElementById('debugConsole')
+    	newLine.innerHTML = {acc:'error', data:'ERR:'+error+' URL:'+url+' L:'+line};
+	};
+</script>
