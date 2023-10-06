@@ -14,6 +14,7 @@ var erthWrap = texture.load('txtr/erthwrap.jpg');
 var mrsWrap = texture.load('txtr/mrswrap.jpg');
 var jptrWrap = texture.load('txtr/jptrwrap.jpg');
 var strnWrap = texture.load('txtr/strnwrap.jpg');
+    var strnRing = texture.load('txtr/strnring.png');
 var urnsWrap = texture.load('txtr/urnswrap.jpg');
 var nptnWrap = texture.load('txtr/nptnwrap.jpg');
 var plutoWrap = texture.load('txtr/plutowrap.jpg');
@@ -54,6 +55,7 @@ const erthMesh = new THREE.SphereGeometry(1, 32, 32);
 const mrsMesh = new THREE.SphereGeometry(0.7, 32, 32);
 const jptrMesh = new THREE.SphereGeometry(2.2, 32, 32);
 const strnMesh = new THREE.SphereGeometry(2, 32, 32);
+    const strnRingMesh = new THREE.RingGeometry(2.1, 3, 30, 1, 0);
 const urnsMesh = new THREE.SphereGeometry(0.9, 32, 32);
 const nptnMesh = new THREE.SphereGeometry(0.85, 32, 32);
 const plutoMesh = new THREE.SphereGeometry(0.3, 32, 32);
@@ -66,6 +68,7 @@ const erthMat = new THREE.MeshStandardMaterial({ map: erthWrap });
 const mrsMat = new THREE.MeshStandardMaterial({ map: mrsWrap });
 const jptrMat = new THREE.MeshStandardMaterial({ map: jptrWrap });
 const strnMat = new THREE.MeshStandardMaterial({ map: strnWrap });
+    const strnRingMat = new THREE.MeshStandardMaterial({ map: strnRing, transparent: true, opacity: 0.5});
 const urnsMat = new THREE.MeshStandardMaterial({ map: urnsWrap });
 const nptnMat = new THREE.MeshStandardMaterial({ map: nptnWrap });
 const plutoMat = new THREE.MeshStandardMaterial({ map: plutoWrap });
@@ -83,6 +86,9 @@ sunlight.shadow.mapSize.width = 512;
 sunlight.shadow.mapSize.height = 512;
 sunlight.shadow.camera.near = 0.5;
 sunlight.shadow.camera.far = 1000;
+
+const debugLight = new THREE.AmbientLight(0xffffff);
+debugLight.position.set(0, 0, 0);
 
 // Distance from sun
 let mrcrydistance = 5;
@@ -151,14 +157,21 @@ for(let i = 0; i<12; i++){
 }
 
 const strngrp = [];
+const strnRingGrp = [];
 for (let i = 0; i<12; i++){
     const strn = new THREE.Mesh(strnMesh, strnMat);
     strn.material.flatShading = false;
+    const strnRing = new THREE.Mesh(strnRingMesh, strnRingMat)
+    strnRing.material.flatShading = false;
+    strnRing.rotation.set(-90,0,0)
     strngrp.push(strn);
+    strnRingGrp.push(strnRing)
 }
 for(let i = 0; i<12; i++){
     strngrp[i].position.set(strndistance*Math.sin(i*Math.PI/2/3),0,strndistance*Math.cos(i*Math.PI/2/3));
+    strnRingGrp[i].position.set(strndistance*Math.sin(i*Math.PI/2/3),0,strndistance*Math.cos(i*Math.PI/2/3));
     SaturnGroup.add(strngrp[i]);
+    SaturnGroup.add(strnRingGrp[i]);
 }
 
 const urnsgrp = [];
@@ -263,6 +276,8 @@ window.addEventListener("resize", () => {
 });
 
 // Input
+var debug = false;
+
 const revmult = document.getElementById("revmult");
 revmult.value = 1
 document.addEventListener('keydown', event => {
@@ -272,6 +287,16 @@ document.addEventListener('keydown', event => {
         revolutionMultiplier += 1
     } else if (key === 'd') {
         revolutionMultiplier -= 1
+    }
+
+    if (key === '`') {
+        if (debug == false) {
+            debug = true;
+            scene.add(debugLight)
+        } else if (debug == true) {
+            debug = false
+            scene.remove(debugLight)
+        }
     }
 
     revmult.value = revolutionMultiplier
