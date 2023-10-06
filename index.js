@@ -312,5 +312,5 @@ var nonumrevmult = 1
 var isNegative = false
 revmult.addEventListener('input', function(){
     nonumrevmult = revmult.value
-    revolutionMultiplier = nonumrevmult.replace(/^\-\D/g,'')
+    revolutionMultiplier = nonumrevmult.replace(/[^-]\D/g,'')
 });
