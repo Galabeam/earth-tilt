@@ -1,7 +1,7 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.module.js';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
 
-var revolutionMultiplier = 1
+var ts = 1
 
 const texture = new THREE.TextureLoader();
 const scene = new THREE.Scene();
@@ -239,15 +239,27 @@ var time = new Date();
 const animate = () => {
     requestAnimationFrame(animate);
 
-    MercuryGroup.rotation.y += (0.00107 * revolutionMultiplier); // 107mph
-    VenusGroup.rotation.y += (0.00078 * revolutionMultiplier); // 78mph
-    EarthGroup.rotation.y += (0.00067 * revolutionMultiplier); // 67mph
-    MarsGroup.rotation.y += (0.00053 * revolutionMultiplier); // 53mph
-    JupiterGroup.rotation.y += (0.00029 * revolutionMultiplier); // 29mph
-    SaturnGroup.rotation.y += (0.00021 * revolutionMultiplier); // 21mph
-    UranusGroup.rotation.y += (0.00015 * revolutionMultiplier); // 15mph
-    NeptuneGroup.rotation.y += (0.00012 * revolutionMultiplier); // 12mph
-    PlutoGroup.rotation.y += (0.00010 * revolutionMultiplier); // 10mph
+    MercuryGroup.rotation.y += (0.00107 * ts); // 107mph
+    VenusGroup.rotation.y += (0.00078 * ts); // 78mph
+    EarthGroup.rotation.y += (0.00067 * ts); // 67mph
+    MarsGroup.rotation.y += (0.00053 * ts); // 53mph
+    JupiterGroup.rotation.y += (0.00029 * ts); // 29mph
+    SaturnGroup.rotation.y += (0.00021 * ts); // 21mph
+    UranusGroup.rotation.y += (0.00015 * ts); // 15mph
+    NeptuneGroup.rotation.y += (0.00012 * ts); // 12mph
+    PlutoGroup.rotation.y += (0.00010 * ts); // 10mph
+
+    for (let i = 0; i < 12; i++) {
+        mrcrygrp[i].rotation.y += (0.059 * ts)
+        vnusgrp[i].rotation.y += (0.0243 * ts)
+        erthgrp[i].rotation.y += (0.24 * ts)
+        mrsgrp[i].rotation.y += (0.24 * ts)
+        jptrgrp[i].rotation.y += (0.09 * ts)
+        strngrp[i].rotation.y += (0.01 * ts)
+        urnsgrp[i].rotation.y += (0.017 * ts)
+        nptngrp[i].rotation.y += (0.016 * ts)
+        plutogrp[i].rotation.y += (0.06 * ts)
+    }
 
     time = new Date();
     controls.update();
@@ -276,15 +288,15 @@ scene.traverse(function(obj) {
     if (obj.material) allMats.push(obj.material);
 });
 
-const revmult = document.getElementById("revmult");
-revmult.value = 1
+const tsElement = document.getElementById("ts");
+tsElement.value = 1
 document.addEventListener('keydown', event => {
     const key = event.key.toLowerCase();
 
     if (key === 'a') {
-        revolutionMultiplier += 1
+        ts += 1
     } else if (key === 'd') {
-        revolutionMultiplier -= 1
+        ts -= 1
     }
 
     if (key === '`') {
@@ -325,11 +337,11 @@ document.addEventListener('keydown', event => {
             }
         }
     }
-    revmult.value = revolutionMultiplier
+    tsElement.value = ts
 });
 
-var nonumrevmult = 1
-revmult.addEventListener('input', function(){
-    nonumrevmult = revmult.value
-    revolutionMultiplier = nonumrevmult.replace(/(?!^[+-])[^0-9.]/g,'');
+var filteredTsElement = 1
+tsElement.addEventListener('input', function(){
+    filteredTsElement = tsElement.value
+    ts = filteredTsElement.replace(/(?!^[+-])[^0-9.]/g,'');
 });

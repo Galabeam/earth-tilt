@@ -19,7 +19,7 @@ body {
 	color: rgb(255,255,255);
 }
 
-#revmultcontainer {
+#tscontainer {
 	position: absolute;
 	left: 15px;
 	top: 15px;
@@ -32,7 +32,7 @@ body {
 	font-family: Roboto;
 	color: white;
 }
-#revmult {
+#ts {
 	background-color: rgba(255,255,255,0);
 	text-align: center;
 	font-size: 20px;
@@ -47,7 +47,7 @@ body {
 	left: 15px;
 	bottom: 15px;
 	width: 34ex;
-	height: 18em;
+	height: 16em;
 
 	text-align: center;
 	font-size: 15px;
