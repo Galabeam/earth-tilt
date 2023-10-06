@@ -10,7 +10,7 @@ body {
 
 #debugConsole {
 	position: absolute;
-	float: right;
+	margin-left: 65%;
 	width: 35%;
 	height: 90%;
 	top: 5%;
