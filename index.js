@@ -231,13 +231,6 @@ Planets.add(UranusGroup);
 Planets.add(NeptuneGroup);
 Planets.add(PlutoGroup);
 
-for (let i = 0; i < 12; i++) {
-    // Calculate the position of the current segment
-    const angle = i * Math.PI/2/3;
-    const x = erthdistance * Math.cos(angle);
-    const y = erthdistance * Math.sin(angle);
-}
-
 scene.add(Planets);
 
 // Revolution
@@ -277,6 +270,10 @@ window.addEventListener("resize", () => {
 
 // Input
 var debug = false;
+const allMats = [];
+scene.traverse(function(obj) {
+    if (obj.material) allMats.push(obj.material);
+});
 
 const revmult = document.getElementById("revmult");
 revmult.value = 1
@@ -292,13 +289,22 @@ document.addEventListener('keydown', event => {
     if (key === '`') {
         if (debug == false) {
             debug = true;
+
             scene.add(debugLight)
+
+            for (let i = 0; i < allMats.length; i++) {
+                allMats[i].wireframe = true;
+            }
         } else if (debug == true) {
             debug = false
+
             scene.remove(debugLight)
+
+            for (let i = 0; i < allMats.length; i++) {
+                allMats[i].wireframe = false;
+            }
         }
     }
-
     revmult.value = revolutionMultiplier
 });
 
