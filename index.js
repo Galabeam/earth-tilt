@@ -313,7 +313,3 @@ revmult.addEventListener('input', function(){
     nonumrevmult = revmult.value
     revolutionMultiplier = nonumrevmult.replace(/\D/g,'')
 });
-
-ReadableStreamDefaultController.addEventListener() P{
-    blahblaherror = 91;34
-}
