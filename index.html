@@ -35,6 +35,8 @@
 	window.onerror = function(error, url, line) {
 		const newLine = document.createElement('p');
 		newLine.parentElement = document.getElementById('debugConsole')
-    	newLine.innerHTML = {acc:'error', data:'ERR:'+error+' URL:'+url+' L:'+line};
+    	newLine.innerHTML = error;
 	};
 </script>
+
+<!--{acc:'error', data:'ERR:'+error+' URL:'+url+' L:'+line}
