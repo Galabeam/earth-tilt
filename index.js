@@ -233,12 +233,10 @@ Planets.add(PlutoGroup);
 
 scene.add(Planets);
 
-// Revolution
-var time = new Date();
-
 const animate = () => {
     requestAnimationFrame(animate);
 
+    // Revolution
     MercuryGroup.rotation.y += (0.00107 * ts); // 107mph
     VenusGroup.rotation.y += (0.00078 * ts); // 78mph
     EarthGroup.rotation.y += (0.00067 * ts); // 67mph
@@ -249,6 +247,7 @@ const animate = () => {
     NeptuneGroup.rotation.y += (0.00012 * ts); // 12mph
     PlutoGroup.rotation.y += (0.00010 * ts); // 10mph
 
+    // Rotation
     for (let i = 0; i < 12; i++) {
         mrcrygrp[i].rotation.y += (0.00677 * ts) // 6.77mph
         vnusgrp[i].rotation.y += (0.00405 * ts) // 4.05mph
@@ -262,7 +261,6 @@ const animate = () => {
         plutogrp[i].rotation.y += (0.003 * ts) // 30mph
     }
 
-    time = new Date();
     controls.update();
     renderer.render(scene, camera);
 };
@@ -344,5 +342,9 @@ document.addEventListener('keydown', event => {
 var filteredTsElement = 1
 tsElement.addEventListener('input', function(){
     filteredTsElement = tsElement.value
-    ts = filteredTsElement.replace(/(?!^[+-])[^0-9.]/g,'');
+    if (filteredTsElement.replace(/(?!^[+-])[^0-9.]/g,'') == '-') {
+        ts = '-1'
+    } else {
+        ts = filteredTsElement.replace(/(?!^[+-])[^0-9.]/g,'');
+    }
 });
