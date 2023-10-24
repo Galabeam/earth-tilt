@@ -95,15 +95,15 @@ const debugLight = new THREE.AmbientLight(0xffffff)
 debugLight.position.set(0, 0, 0)
 
 // Distance from sun
-let mrcrydistance = 5
-let vnusdistance = 10
-let erthdistance = 15
-let mrsdistance = 24
-let jptrdistance = 34
-let strndistance = 45
-let urnsdistance = 55
-let nptndistance = 66
-let plutodistance = 78
+let mrcrydistance = 5 // 70
+let vnusdistance = 10 // 108
+let erthdistance = 15 // 150
+let mrsdistance = 24 // 228
+let jptrdistance = 34 // 778
+let strndistance = 45 // 1430
+let urnsdistance = 55 // 2934
+let nptndistance = 66 // 4572
+let plutodistance = 78 // 5900
 
 // Celestials
 const clstials = []
@@ -238,16 +238,17 @@ const animate = () => {
     requestAnimationFrame(animate);
 
     // Revolution
-    MercuryGroup.rotation.y += (0.00107 * ts) // 107mph
-    VenusGroup.rotation.y += (0.00078 * ts) // 78mph
-    EarthGroup.rotation.y += (0.00067 * ts) // 67mph
-        MoonGroup.rotation.y += (0.00067 * ts) // 67mph
-    MarsGroup.rotation.y += (0.00053 * ts) // 53mph
-    JupiterGroup.rotation.y += (0.00029 * ts) // 29mph
-    SaturnGroup.rotation.y += (0.00021 * ts) // 21mph
-    UranusGroup.rotation.y += (0.00015 * ts) // 15mph
-    NeptuneGroup.rotation.y += (0.00012 * ts) // 12mph
-    PlutoGroup.rotation.y += (0.00010 * ts) // 10mph
+    MercuryGroup.rotation.y += (0.00107 * ts) // 10.89km/hr
+    VenusGroup.rotation.y += (0.00078 * ts) // 6.52km/hr
+    EarthGroup.rotation.y += (0.00067 * ts) // 1670km/hr
+        MoonGroup.rotation.y += (0.00067 * ts) // 16.7km/hr
+    MarsGroup.rotation.y += (0.00053 * ts) // 870km/hr
+    JupiterGroup.rotation.y += (0.00029 * ts) // 43,000km/hr
+    SaturnGroup.rotation.y += (0.00021 * ts) // 35,500km/hr
+    UranusGroup.rotation.y += (0.00015 * ts) // 9,320km/hr
+    NeptuneGroup.rotation.y += (0.00012 * ts) // 9,650km/hr
+    PlutoGroup.rotation.y += (0.00010 * ts) // 47.18km/hr
+    // HEEYHEYRHEYRH HEYRHYRH THESE ARE ROTATION SPEEDS *%%&Y%^^%^^^^^%^%^^%^^^
 
     // Rotation
     for (let i = 0; i < 12; i++) {
