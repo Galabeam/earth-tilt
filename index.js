@@ -1,7 +1,8 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.module.js'
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js'
 
-var ts = 0.001
+var fts = 1
+var ts = fts * 0.00001
 
 const texture = new THREE.TextureLoader()
 const scene = new THREE.Scene()
@@ -23,9 +24,9 @@ var nptnWrap = texture.load(txtr + 'nptnwrap.jpg')
 var plutoWrap = texture.load(txtr + 'plutowrap.jpg')
 
 // Camera
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-camera.position.z = 0
-camera.position.y = 90
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000)
+camera.position.z = 400
+camera.position.y = 100
 camera.lookAt(new THREE.Vector3(0,0,0))
 
 // Groups
@@ -50,18 +51,18 @@ document.body.appendChild(renderer.domElement)
 const controls = new OrbitControls( camera, renderer.domElement )
 
 // Geometry
-const sunMesh = new THREE.SphereGeometry(2, 32, 32)
-const mrcryMesh = new THREE.SphereGeometry(0.4, 32, 32)
-const vnusMesh = new THREE.SphereGeometry(0.8, 32, 32)
-const erthMesh = new THREE.SphereGeometry(1, 32, 32)
-    const mnMesh = new THREE.SphereGeometry(0.25, 32, 32)
-const mrsMesh = new THREE.SphereGeometry(0.7, 32, 32)
-const jptrMesh = new THREE.SphereGeometry(2.2, 32, 32)
-const strnMesh = new THREE.SphereGeometry(2, 32, 32)
+const sunMesh = new THREE.SphereGeometry(13.91, 32, 32) // 1391000 km
+const mrcryMesh = new THREE.SphereGeometry(0.4879, 32, 32) // 4879 km
+const vnusMesh = new THREE.SphereGeometry(1.2104, 32, 32) // 12104 km
+const erthMesh = new THREE.SphereGeometry(1.2742, 32, 32) // 12742 km
+    const mnMesh = new THREE.SphereGeometry(0.3474, 32, 32) // 3474 km
+const mrsMesh = new THREE.SphereGeometry(0.6779, 32, 32) // 6779 km
+const jptrMesh = new THREE.SphereGeometry(13.9822, 32, 32) // 139822 km
+const strnMesh = new THREE.SphereGeometry(11.6464, 32, 32) // 116464 km
     const strnRingMesh = new THREE.TorusGeometry(2.5, 0.3, 30, 50)
-const urnsMesh = new THREE.SphereGeometry(0.9, 32, 32)
-const nptnMesh = new THREE.SphereGeometry(0.85, 32, 32)
-const plutoMesh = new THREE.SphereGeometry(0.3, 32, 32)
+const urnsMesh = new THREE.SphereGeometry(5.0724, 32, 32) // 50724 km
+const nptnMesh = new THREE.SphereGeometry(4.9244, 32, 32) // 49244 km
+const plutoMesh = new THREE.SphereGeometry(0.2377, 32, 32) // 2377 km
 
 // Materials
 const sunMat = new THREE.MeshToonMaterial({ map: sunWrap })
@@ -95,15 +96,15 @@ const debugLight = new THREE.AmbientLight(0xffffff)
 debugLight.position.set(0, 0, 0)
 
 // Distance from sun
-let mrcrydistance = 5 // 70
-let vnusdistance = 10 // 108
-let erthdistance = 15 // 150
-let mrsdistance = 24 // 228
-let jptrdistance = 34 // 778
-let strndistance = 45 // 1430
-let urnsdistance = 55 // 2934
-let nptndistance = 66 // 4572
-let plutodistance = 78 // 5900
+let mrcrydistance = 57 // 57,909,175 km
+let vnusdistance = 108 // 108,208,930 km
+let erthdistance = 149 // 149,597,890 km
+let mrsdistance = 227 // 227,936,640 km
+let jptrdistance = 778 // 778,412,010 km
+let strndistance = 1426 // 1,426,725,400 km
+let urnsdistance = 2870 // 2,870,972,200 km
+let nptndistance = 4498 // 4,498,252,900 km
+let plutodistance = 5906 // 5,906,440,000 km
 
 // Celestials
 const clstials = []
@@ -238,32 +239,32 @@ const animate = () => {
     requestAnimationFrame(animate);
 
     // Revolution
-    MercuryGroup.rotation.y += (1.70505 * ts) // 170505 km/hr
-    VenusGroup.rotation.y += (1.26077 * ts) // 126077 km/hr
-    EarthGroup.rotation.y += (1.07000 * ts) // 107000 km/hr
-        MoonGroup.rotation.y += (1.07000 * ts) // 3683 km/hr
-    MarsGroup.rotation.y += (0.86871 * ts) // 86871 km/hr
-    JupiterGroup.rotation.y += (0.47051 * ts) // 47051 km/hr
-    SaturnGroup.rotation.y += (0.34821 * ts) // 34821 km/hr
-    UranusGroup.rotation.y += (0.24607 * ts) // 24607 km/hr
-    NeptuneGroup.rotation.y += (0.19548 * ts) // 19548 km/hr
-    PlutoGroup.rotation.y += (0.17096 * ts) // 17096 km/hr
+    MercuryGroup.rotation.y += ((170505 * (Math.PI/2/3)/mrcrydistance) * ts) // 170505 km/h
+    VenusGroup.rotation.y += ((126077 * (Math.PI/2/3)/vnusdistance) * ts) // 126077 km/h
+    EarthGroup.rotation.y += ((107226 * (Math.PI/2/3)/erthdistance) * ts) // 107226 km/h
+        MoonGroup.rotation.y += ((107226 * (Math.PI/2/3)/erthdistance) * ts) // 1674.4 km/h
+    MarsGroup.rotation.y += ((86871 * (Math.PI/2/3)/mrsdistance) * ts) // 86871 km/h
+    JupiterGroup.rotation.y += ((47761 * (Math.PI/2/3)/jptrdistance) * ts) // 47761 km/h
+    SaturnGroup.rotation.y += ((34884 * (Math.PI/2/3)/strndistance) * ts) // 34884 km/h
+    UranusGroup.rotation.y += ((24614 * (Math.PI/2/3)/urnsdistance) * ts) // 24614 km/h
+    NeptuneGroup.rotation.y += ((19377 * (Math.PI/2/3)/nptndistance) * ts) // 	19377 km/h
+    PlutoGroup.rotation.y += ((17156 * (Math.PI/2/3)/plutodistance) * ts) // 17156 km/h
 
     // Rotation
     for (let i = 0; i < 12; i++) {
-        mrcrygrp[i].rotation.y += (10.89 * ts) // 10.89km/hr
-        vnusgrp[i].rotation.y += (6.52 * ts) // 6.52km/hr
-        erthgrp[i].rotation.y += (16.7 * ts) // 16.7km/hr
+        mrcrygrp[i].rotation.y += (10.83 * ts) // 10.83 km/h
+        vnusgrp[i].rotation.y += (6.52 * ts) // 6.52 km/h
+        erthgrp[i].rotation.y += (1670.43 * ts) // 1670.43 km/h
             for (let o = 0; o < 145; o++) {
-                mngrp[o].rotation.y += (16.7 * ts) // 16.7km/hr
+                mngrp[o].rotation.y += (1670.43 * ts) // 1670.43 km/h
             }
-        mrsgrp[i].rotation.y += (8.70 * ts) // 870km/hr
-        jptrgrp[i].rotation.y += (430 * ts) // 43,000km/hr
-        strngrp[i].rotation.y += (355 * ts) // 35,500km/hr
+        mrsgrp[i].rotation.y += (868.22 * ts) // 868.22 km/h
+        jptrgrp[i].rotation.y += (46485.6 * ts) // 46485.60 km/h
+        strngrp[i].rotation.y += (37217.1 * ts) // 37217.10 km/h
             strnRingGrp[i].rotation.z += (2.3 * ts)
-        urnsgrp[i].rotation.y += (93.2 * ts) // 9,320km/hr
-        nptngrp[i].rotation.y += (96.5 * ts) // 9,650km/hr
-        plutogrp[i].rotation.y += (47.18 * ts) // 47.18km/hr
+        urnsgrp[i].rotation.y += (9166.48 * ts) // 9166.48 km/h
+        nptngrp[i].rotation.y += (9175.12 * ts) // 9175.12 km/h
+        plutogrp[i].rotation.y += (473.49 * ts) // 473.49 km/h
     }
 
     controls.update()
@@ -293,14 +294,18 @@ scene.traverse(function(obj) {
 })
 
 const tsElement = document.getElementById("ts")
-tsElement.value = ts
+tsElement.value = fts
 document.addEventListener('keydown', event => {
     const key = event.key.toLowerCase()
 
     if (key === 'a') {
-        ts += 1
+        fts += 1
+        tsElement.value = fts
+        ts = fts * 0.00000001
     } else if (key === 'd') {
-        ts -= 1
+        fts -= 1
+        tsElement.value = fts
+        ts = fts * 0.00000001
     }
 
     if (key === '`') {
@@ -341,15 +346,15 @@ document.addEventListener('keydown', event => {
             }
         }
     }
-    tsElement.value = ts
 })
 
 var filteredTsElement = 1
 tsElement.addEventListener('input', function(){
     filteredTsElement = tsElement.value
     if (filteredTsElement.replace(/(?!^[+-])[^0-9.]/g,'') == '-') {
-        ts = '-1'
+        fts = '-1'
     } else {
-        ts = filteredTsElement.replace(/(?!^[+-])[^0-9.]/g,'')
+        fts = filteredTsElement.replace(/(?!^[+-])[^0-9.]/g,'')
     }
+    ts = fts * 0.00000001
 })
