@@ -247,7 +247,7 @@ const animate = () => {
     JupiterGroup.rotation.y += ((47761 * (Math.PI/2/3)/jptrdistance) * ts) // 47761 km/h
     SaturnGroup.rotation.y += ((34884 * (Math.PI/2/3)/strndistance) * ts) // 34884 km/h
     UranusGroup.rotation.y += ((24614 * (Math.PI/2/3)/urnsdistance) * ts) // 24614 km/h
-    NeptuneGroup.rotation.y += ((19377 * (Math.PI/2/3)/nptndistance) * ts) // 	19377 km/h
+    NeptuneGroup.rotation.y += ((19377 * (Math.PI/2/3)/nptndistance) * ts) // 19377 km/h
     PlutoGroup.rotation.y += ((17156 * (Math.PI/2/3)/plutodistance) * ts) // 17156 km/h
 
     // Rotation
