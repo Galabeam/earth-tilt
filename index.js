@@ -1,7 +1,7 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.module.js'
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js'
 
-var ts = 1
+var ts = 0.001
 
 const texture = new THREE.TextureLoader()
 const scene = new THREE.Scene()
@@ -238,33 +238,32 @@ const animate = () => {
     requestAnimationFrame(animate);
 
     // Revolution
-    MercuryGroup.rotation.y += (0.00107 * ts) // 10.89km/hr
-    VenusGroup.rotation.y += (0.00078 * ts) // 6.52km/hr
-    EarthGroup.rotation.y += (0.00067 * ts) // 1670km/hr
-        MoonGroup.rotation.y += (0.00067 * ts) // 16.7km/hr
-    MarsGroup.rotation.y += (0.00053 * ts) // 870km/hr
-    JupiterGroup.rotation.y += (0.00029 * ts) // 43,000km/hr
-    SaturnGroup.rotation.y += (0.00021 * ts) // 35,500km/hr
-    UranusGroup.rotation.y += (0.00015 * ts) // 9,320km/hr
-    NeptuneGroup.rotation.y += (0.00012 * ts) // 9,650km/hr
-    PlutoGroup.rotation.y += (0.00010 * ts) // 47.18km/hr
-    // HEEYHEYRHEYRH HEYRHYRH THESE ARE ROTATION SPEEDS *%%&Y%^^%^^^^^%^%^^%^^^
+    MercuryGroup.rotation.y += (1.70505 * ts) // 170505 km/hr
+    VenusGroup.rotation.y += (1.26077 * ts) // 126077 km/hr
+    EarthGroup.rotation.y += (1.07000 * ts) // 107000 km/hr
+        MoonGroup.rotation.y += (1.07000 * ts) // 3683 km/hr
+    MarsGroup.rotation.y += (0.86871 * ts) // 86871 km/hr
+    JupiterGroup.rotation.y += (0.47051 * ts) // 47051 km/hr
+    SaturnGroup.rotation.y += (0.34821 * ts) // 34821 km/hr
+    UranusGroup.rotation.y += (0.24607 * ts) // 24607 km/hr
+    NeptuneGroup.rotation.y += (0.19548 * ts) // 19548 km/hr
+    PlutoGroup.rotation.y += (0.17096 * ts) // 17096 km/hr
 
     // Rotation
     for (let i = 0; i < 12; i++) {
-        mrcrygrp[i].rotation.y += (0.00677 * ts) // 6.77mph
-        vnusgrp[i].rotation.y += (0.00405 * ts) // 4.05mph
-        erthgrp[i].rotation.y += (0.1037 * ts) // 1037mph
+        mrcrygrp[i].rotation.y += (10.89 * ts) // 10.89km/hr
+        vnusgrp[i].rotation.y += (6.52 * ts) // 6.52km/hr
+        erthgrp[i].rotation.y += (16.7 * ts) // 16.7km/hr
             for (let o = 0; o < 145; o++) {
-                mngrp[o].rotation.y += (0.0010 * ts) // 10mph
+                mngrp[o].rotation.y += (16.7 * ts) // 16.7km/hr
             }
-        mrsgrp[i].rotation.y += (0.054 * ts) // 540mph
-        jptrgrp[i].rotation.y += (2.8273 * ts) // 28273mph
-        strngrp[i].rotation.y += (2.3 * ts) // 23000mph
+        mrsgrp[i].rotation.y += (8.70 * ts) // 870km/hr
+        jptrgrp[i].rotation.y += (430 * ts) // 43,000km/hr
+        strngrp[i].rotation.y += (355 * ts) // 35,500km/hr
             strnRingGrp[i].rotation.z += (2.3 * ts)
-        urnsgrp[i].rotation.y += (1.529 * ts) // 15290mph
-        nptngrp[i].rotation.y += (0.6 * ts) // 6000mph
-        plutogrp[i].rotation.y += (0.003 * ts) // 30mph
+        urnsgrp[i].rotation.y += (93.2 * ts) // 9,320km/hr
+        nptngrp[i].rotation.y += (96.5 * ts) // 9,650km/hr
+        plutogrp[i].rotation.y += (47.18 * ts) // 47.18km/hr
     }
 
     controls.update()
@@ -294,7 +293,7 @@ scene.traverse(function(obj) {
 })
 
 const tsElement = document.getElementById("ts")
-tsElement.value = 1
+tsElement.value = ts
 document.addEventListener('keydown', event => {
     const key = event.key.toLowerCase()
 
